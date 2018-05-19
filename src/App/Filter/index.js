@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import shortid from 'shortid';
 import CustomDropdown from '../CustomDropdown';
+import './filter.css';
 
 const filterData = [
   {
@@ -23,27 +24,27 @@ const filterData = [
 const listContent = [
   {
     id: shortid.generate(),
-    title: 'Title of item (strategy)',
+    title: 'Strategy Filterable Item',
     categories: ['strategy'],
   },
   {
     id: shortid.generate(),
-    title: 'Title of item (digital)',
+    title: 'Digital Filterable Item',
     categories: ['digital'],
   },
   {
     id: shortid.generate(),
-    title: 'Title of item (strategy & digital)',
+    title: 'Strategy & Digital Filterable Item',
     categories: ['strategy', 'digital'],
   },
   {
     id: shortid.generate(),
-    title: 'Title of item (unassigned)',
+    title: 'Unassigned Filterable Item',
     categories: ['unassigned'],
   },
   {
     id: shortid.generate(),
-    title: 'Title of item ("")',
+    title: 'Empty Filterable Item',
     categories: [''],
   },
 ];
@@ -76,20 +77,26 @@ export default class FormComponent extends PureComponent {
     }
 
     filteredList = filteredList.map(item => (
-      <li key={item.id}>{item.title}</li>
+      <li key={item.id}>
+        <h3>{item.title}</h3>
+        <p><strong>Categories</strong>: {item.categories.join(', ')}</p>
+      </li>
     ));
 
     return (
-      <section>
-        <h2>Filter Component</h2>
-        <CustomDropdown
-          data={filterData}
-          onDropdownChange={this.handleDropdownChange}
-        />
-
-        <ul>
-          { filteredList }
-        </ul>
+      <section className="filter-component">
+        <div>
+          <h2>Filter By Category</h2>
+          <CustomDropdown
+            data={filterData}
+            onDropdownChange={this.handleDropdownChange}
+          />
+        </div>
+        <div>
+          <ul>
+            { filteredList }
+          </ul>
+        </div>
       </section>
     );
   }

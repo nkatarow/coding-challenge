@@ -8,7 +8,7 @@ const navigationData = [
   {
     id: shortid.generate(),
     value: '/',
-    content: 'Select Use Case',
+    content: 'Project Description',
   },
   {
     id: shortid.generate(),
@@ -38,7 +38,6 @@ class Navigation extends PureComponent {
   render() {
     return (
       <nav>
-        <h2>Navigation</h2>
         <CustomDropdown
           data={navigationData}
           onDropdownChange={this.handleDropdownChange}
@@ -51,4 +50,6 @@ class Navigation extends PureComponent {
 Navigation.propTypes = {
   history: PropTypes.shape().isRequired,
 };
+
+
 export default withRouter(Navigation);

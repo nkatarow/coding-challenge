@@ -1,0 +1,22 @@
+.filter-component {
+  display: flex;
+  justify-content: space-between;
+  margin: 2em auto;
+  max-width: 1080px;
+}
+  .filter-component div:first-child { width: 20%; }
+  .filter-component div:last-child { width: 75%; }
+
+ul {
+  border-bottom: 1px solid #ccc;
+  list-style: none;
+  padding-left: 0;
+  width: 100%;
+}
+
+ul li {
+  border-top: 1px solid #ccc;
+  padding: 1em;
+}
+
+ul li:nth-child(odd) { background-color: rgba(51,122,183,.2); }

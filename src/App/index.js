@@ -5,13 +5,12 @@ import Filter from './Filter';
 import Landing from './Landing';
 import FormComponent from './FormComponent';
 import logo from '../_ui/logo.svg';
-import './App.css';
 
 const App = () => (
   <div className="App">
     <header className="App-header">
       <img src={logo} className="App-logo" alt="logo" />
-      <h1 className="App-title">Welcome to React</h1>
+      <h1 className="App-title">UI Technical Take Home Challenge</h1>
 
       <Navigation />
     </header>

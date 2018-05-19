@@ -1,0 +1,15 @@
+.form-component {
+  display: flex;
+  justify-content: space-between;
+  margin: 2em auto;
+  max-width: 1080px;
+}
+  .form-component div:first-child { width: 20%; }
+  .form-component div:last-child { width: 75%; }
+
+.form-component button {
+  font-size: 14px;
+  margin: 2em 0;
+}
+
+form { margin-top: 2em; }
