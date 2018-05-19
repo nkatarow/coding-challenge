@@ -1,13 +1,11 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-
-import logo from '../_ui/logo.svg';
-import './App.css';
-
 import Navigation from './Navigation';
 import Filter from './Filter';
 import Landing from './Landing';
 import FormComponent from './FormComponent';
+import logo from '../_ui/logo.svg';
+import './App.css';
 
 const App = () => (
   <div className="App">

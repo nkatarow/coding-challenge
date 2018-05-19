@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
 import shortid from 'shortid';
-
 import CustomDropdown from '../CustomDropdown';
 
 const formFieldData = [
