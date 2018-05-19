@@ -6,30 +6,34 @@ export default class CustomDropdown extends PureComponent {
     super(props);
     this.state = { value: '' };
 
-    this.change = this.change.bind(this);
+    this.dropDownHandler = this.dropDownHandler.bind(this);
   }
 
-  change(event) {
+  dropDownHandler(event) {
+    this.props.onDropdownChange(event.target.value);
     this.setState({ value: event.target.value });
-    console.log(event.target.value);
   }
 
   render() {
-    const options = this.props.data.map(option =>
-      <option key={option.id} value={option.value}>{option.content}</option>,
-    );
+    const options = this.props.data.map(option => (
+      <option
+        key={option.id}
+        value={option.value}
+      >
+        {option.content}
+      </option>
+    ));
 
     return (
-      <select onChange={this.change} value={this.state.value}>
+      <select
+        onChange={this.dropDownHandler}
+        value={this.state.value}
+      >
         { options }
       </select>
     );
   }
 }
-
-CustomDropdown.defaultProps = {
-
-};
 
 CustomDropdown.propTypes = {
   data: PropTypes.arrayOf(PropTypes.shape({
@@ -37,4 +41,5 @@ CustomDropdown.propTypes = {
     value: PropTypes.string,
     content: PropTypes.string,
   })).isRequired,
+  onDropdownChange: PropTypes.func.isRequired,
 };
