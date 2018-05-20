@@ -1,0 +1,7 @@
+.project-description {
+  margin: 2em auto;
+  max-width: 600px;
+}
+
+dl dt { font-weight: bold; }
+dl dd { margin-bottom: 1em; }

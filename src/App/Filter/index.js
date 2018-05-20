@@ -3,6 +3,7 @@ import shortid from 'shortid';
 import CustomDropdown from '../CustomDropdown';
 import './filter.css';
 
+// Our test data that will generate the dropdown
 const filterData = [
   {
     id: shortid.generate(),
@@ -21,6 +22,7 @@ const filterData = [
   },
 ];
 
+// Our test data that we will need to filter based on current dropdown selection
 const listContent = [
   {
     id: shortid.generate(),
@@ -50,33 +52,36 @@ const listContent = [
 ];
 
 export default class FormComponent extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      selectedCategory: '',
-    };
+  state = {
+    selectedCategory: '', // Track the currently selected dropdown item
+  };
 
-    this.handleDropdownChange = this.handleDropdownChange.bind(this);
-  }
-
-  handleDropdownChange(value) {
+  // When the dropdown updates, update our state
+  handleDropdownChange = (value) => {
     this.setState({ selectedCategory: value });
   }
 
   render() {
-    let filteredList = [];
+    let filteredList = []; // Create an empty array to track which data should be displayed
 
+    // If our dropdown does not have all selected
     if (this.state.selectedCategory !== '') {
+      // Loop through our set of data to be filtered
       for (let i = 0; i < listContent.length; i += 1) {
+        // If the categories key array contains the selected dropdown value
         if (listContent[i].categories.includes(this.state.selectedCategory)) {
+          // Push it into our tracking array
           filteredList.push(listContent[i]);
         }
       }
     } else {
+      // Otherwise push all items into our tracking array
       filteredList = [...listContent];
     }
 
+    // For each item in our tracking array
     filteredList = filteredList.map(item => (
+      // Create a new list item with the desired content
       <li key={item.id}>
         <h3>{item.title}</h3>
         <p><strong>Categories</strong>: {item.categories.join(', ')}</p>
@@ -87,6 +92,7 @@ export default class FormComponent extends PureComponent {
       <section className="filter-component">
         <div>
           <h2>Filter By Category</h2>
+          {/* Call an instance of the CustomDropdown component and pass in our data and method */}
           <CustomDropdown
             data={filterData}
             onDropdownChange={this.handleDropdownChange}
@@ -94,6 +100,7 @@ export default class FormComponent extends PureComponent {
         </div>
         <div>
           <ul>
+            {/* Display our filtered list which has been generated from our tracking array */}
             { filteredList }
           </ul>
         </div>
