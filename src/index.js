@@ -5,7 +5,6 @@ import createBrowserHistory from 'history/createBrowserHistory';
 
 import './_ui/App.css';
 import App from './App';
-import registerServiceWorker from './registerServiceWorker';
 
 const history = createBrowserHistory();
 
@@ -15,4 +14,3 @@ ReactDOM.render(
   </Router>,
   document.getElementById('root'),
 );
-registerServiceWorker();
