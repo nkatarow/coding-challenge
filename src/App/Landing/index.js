@@ -6,10 +6,10 @@ export default function () {
   return (
     <div className="project-description">
       <section>
-        <h1>Project Description</h1>
+        <h2>Project Description</h2>
         <p>Imagine you are part of a team building out a new web application. In this application there will be many screens and workflows that will need to utilize many of the same components, one of them being a dropdown selector. The dropdown may be used for navigation, form input, filtering and more. The requirements for the dropdown go beyond the capabilities of the standard forms offered with out of the box with HTML. Rather than building a new dropdown component for every instance it’s needed in the app, you are tasked to build out a reusable version.</p>
 
-        <h2>Requirements:</h2>
+        <h3>Requirements:</h3>
         <ul>
           <li>The dropdown component may be used for navigation, form input, filtering and more, so it is important the content can be flexible.</li>
           <li>You may use the technology and framework of your choice but it should go beyond basic HTML forms (bonus points, but definitely not required, for using Angular)</li>
