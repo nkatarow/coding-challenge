@@ -1,0 +1,20 @@
+.dropdown {
+  border: 1px solid #ccc;
+  padding: 5px;
+  width: 100%;
+}
+
+.dropdown ul {
+  font-size: 14px;
+  height: 0;
+  list-style: none;
+  margin: 0;
+  max-height: 100;
+  overflow-y: auto;
+  padding-left: 0;
+}
+  .dropdown ul.open { height: auto; }
+
+.dropdown ul li {
+  display: block;
+}

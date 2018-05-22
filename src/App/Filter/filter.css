@@ -4,19 +4,21 @@
   margin: 2em auto;
   max-width: 1080px;
 }
-  .filter-component div:first-child { width: 20%; }
-  .filter-component div:last-child { width: 75%; }
+  .filter-component .left { width: 20%; }
+  .filter-component .right { width: 75%; }
 
-.filter-component ul {
+.filtered-list-example {
   border-bottom: 1px solid #ccc;
   list-style: none;
   padding-left: 0;
   width: 100%;
 }
 
-.filter-component ul li {
+.filtered-list-example li {
   border-top: 1px solid #ccc;
   padding: 1em;
 }
 
-.filter-component ul li:nth-child(odd) { background-color: rgba(51,122,183,.2); }
+.filtered-list-example li:nth-child(odd) { background-color: rgba(51,122,183,.2); }
+
+.filter-component h2, .filter-component h3 { margin-top: 1em; }

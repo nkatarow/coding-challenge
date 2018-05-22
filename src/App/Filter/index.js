@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import shortid from 'shortid';
-import CustomDropdown from '../CustomDropdown';
+import Dropdown from '../Dropdown';
 import './filter.css';
 
 // Our test data that will generate the dropdown
@@ -90,16 +90,16 @@ export default class FormComponent extends PureComponent {
 
     return (
       <section className="filter-component">
-        <div>
+        <div className="left">
           <h2>Filter By Category</h2>
-          {/* Call an instance of the CustomDropdown component and pass in our data and method */}
-          <CustomDropdown
+          {/* Call an instance of the Dropdown component and pass in our data and method */}
+          <Dropdown
             data={filterData}
             onDropdownChange={this.handleDropdownChange}
           />
         </div>
-        <div>
-          <ul>
+        <div className="right">
+          <ul className="filtered-list-example">
             {/* Display our filtered list which has been generated from our tracking array */}
             { filteredList }
           </ul>
