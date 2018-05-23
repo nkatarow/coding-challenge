@@ -47,14 +47,14 @@ export default class FormComponent extends PureComponent {
     return (
       <section className="form-component">
         <div>
-          <form onSubmit={this.formSubmit}>
+          <form>
             {/* Call an instance of the Dropdown component and pass in our data and method */}
             <Dropdown
               data={formFieldData}
               defaultTitle="Select..."
               onDropdownChange={this.handleDropdownChange}
             />
-            <button>Submit</button>
+            <button onClick={this.formSubmit}>Submit</button>
           </form>
         </div>
         <div>
