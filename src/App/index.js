@@ -10,7 +10,7 @@ const App = () => (
   <div className="App">
     <header className="App-header">
       <img src={logo} className="App-logo" alt="logo" />
-      <h1 className="App-title">UI Technical Take Home Challenge</h1>
+      <h1 className="App-title">GE Take Home Challenge</h1>
 
       <Navigation />
     </header>

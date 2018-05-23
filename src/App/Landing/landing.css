@@ -3,5 +3,6 @@
   max-width: 600px;
 }
 
-dl dt { font-weight: bold; }
-dl dd { margin-bottom: 1em; }
+dl { margin-left: 4em; }
+  dl dt { font-weight: bold; }
+  dl dd { margin-bottom: 1em; }

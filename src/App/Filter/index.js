@@ -91,14 +91,19 @@ export default class FormComponent extends PureComponent {
     return (
       <section className="filter-component">
         <div className="left">
-          <h2>Filter By Category</h2>
           {/* Call an instance of the Dropdown component and pass in our data and method */}
           <Dropdown
             data={filterData}
+            defaultTitle="Select..."
             onDropdownChange={this.handleDropdownChange}
           />
         </div>
         <div className="right">
+          <h2>Filter By Category</h2>
+          <p>The filter component returns an instance of the Dropdown component and an unordered list containing test data with titles and arrays of categories.</p>
+          <p>When the dropdown changes, this component runs a method that sets the state to the currently selected option.</p>
+          <p>If the currently set state is an empty string, all pieces of data are displayed in the unordered list. Otherwise, the component will loop through the dataset, and add any object that has matching categories to a new array which will be used to display an updated and filtered list of data.</p>
+
           <ul className="filtered-list-example">
             {/* Display our filtered list which has been generated from our tracking array */}
             { filteredList }

@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import { withRouter } from 'react-router';
 import PropTypes from 'prop-types';
 import shortid from 'shortid';
-import CustomDropdown from '../CustomDropdown';
+import Dropdown from '../Dropdown';
 
 // Our test data that will generate the dropdown
 const navigationData = [
@@ -34,9 +34,10 @@ class Navigation extends PureComponent {
   render() {
     return (
       <nav>
-        {/* Call an instance of the CustomDropdown component and pass in our data and method */}
-        <CustomDropdown
+        {/* Call an instance of the Dropdown component and pass in our data and method */}
+        <Dropdown
           data={navigationData}
+          defaultTitle="Navigate to..."
           onDropdownChange={this.handleDropdownChange}
         />
       </nav>

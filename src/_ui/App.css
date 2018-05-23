@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400');
 
+* { box-sizing: border-box }
+
 body {
   margin: 0;
   padding: 0;
@@ -16,6 +18,18 @@ body {
   justify-content: space-around;
   padding: 20px;
 }
+
+  .App-header nav { position: relative; }
+
+    .App-header nav .dropdown ul {
+      background-color: #fff;
+      border-bottom: 1px solid #ccc;
+      border-left: 1px solid #ccc;
+      border-right: 1px solid #ccc;
+      left: 0;
+      position: absolute;
+      width: 100%;
+    }
 
 .App-logo { height: 60px; }
 

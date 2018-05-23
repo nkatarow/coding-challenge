@@ -5,39 +5,48 @@ import './dropdown.css';
 export default class Dropdown extends PureComponent {
   state = {
     value: '', // Track the currently selected dropdown item
-    currentTitle: 'Select...',
-    isOpen: false,
+    currentTitle: this.props.defaultTitle, // Keep the title of the current selection handy
+    isOpen: false, // Is the dropdown currently opened?
   };
 
   componentDidMount() {
-    document.addEventListener('click', this.handleClick, false);
-    document.addEventListener('touchend', this.handleClick, false);
+    document.addEventListener('click', this.handleDocumentClick, false);
   }
 
   componentWillUnmount() {
-    document.removeEventListener('click', this.handleClick, false);
-    document.removeEventListener('touchend', this.handleClick, false);
+    document.removeEventListener('click', this.handleDocumentClick, false);
   }
 
-  handleClick = (event) => {
-    if (this.state.isOpen) {
-      let role = '';
-      if (event.target.attributes.role !== undefined) {
-        role = event.target.attributes.role.value;
-      }
+  setRef = (node) => {
+    this.ddRef = node;
+  }
 
-      if (role === 'option') {
-        this.setState({
-          currentTitle: event.target.attributes.content.value,
-          value: event.target.attributes.value.value,
-          isOpen: false,
-        });
-      }
-    } else {
-      this.setState({ isOpen: true });
+  handleDocumentClick = (event) => {
+    event.preventDefault(); // Keep any default actions from bubbling up
+
+    // Check to see if the dropdown is currently open, a ref has been assigned, and the ref does not contain our target
+    if (this.state.isOpen && this.ddRef && !this.ddRef.contains(event.target)) {
+      this.toggleDropdown(event);
     }
+  }
 
-    this.props.onDropdownChange(this.state.value); // Pass currently selected value via props to the parent's method
+  toggleDropdown = (event) => {
+    event.preventDefault(); // Keep any default actions from bubbling up
+
+    this.setState({
+      isOpen: !this.state.isOpen, // Whatever the current open state is, replace it with the opposite
+      currentTitle: this.props.defaultTitle, // Display our default dropdown title while opened
+    });
+  }
+
+  handleSelection(value, content) {
+    this.setState({
+      currentTitle: content, // Set the select title into state
+      value, // Set the selected value into state
+      isOpen: false, // Close the dropdown after selection
+    });
+
+    this.props.onDropdownChange(value); // Pass currently selected value via props to the parent's method
   }
 
   render() {
@@ -50,23 +59,21 @@ export default class Dropdown extends PureComponent {
         aria-selected="false"
         content={option.content}
         role="option"
+        onClick={() => this.handleSelection(option.value, option.content)}
+        onKeyPress={() => this.handleSelection(option.value, option.content)}
       >
         {option.content}
       </li>
     ));
 
-    let classList = '';
-
-    if (this.state.isOpen) {
-      classList = 'open';
-    }
+    const cssClass = this.state.isOpen ? 'open' : '';
 
     // Then return a select element, generated with our options variable from above
     return (
-      <div className="dropdown">
-        <div>{this.state.currentTitle}</div>
+      <div className="dropdown" ref={this.setRef}>
+        <button onClick={this.toggleDropdown} className="current-selection">{this.state.currentTitle}</button>
         <ul
-          className={classList}
+          className={cssClass}
           onChange={this.dropDownHandler}
           value={this.state.value}
           role="listbox"
@@ -78,6 +85,10 @@ export default class Dropdown extends PureComponent {
   }
 }
 
+Dropdown.defaultProps = {
+  defaultTitle: 'Select...',
+};
+
 Dropdown.propTypes = {
   // Ensure we're receiving data and it's being passed in a way that's usable by this Component
   data: PropTypes.arrayOf(PropTypes.shape({
@@ -85,6 +96,8 @@ Dropdown.propTypes = {
     value: PropTypes.string,
     content: PropTypes.string,
   })).isRequired,
+  // Ensure we're getting a default title passed in
+  defaultTitle: PropTypes.string,
   // Ensure we're getting a method passed that can use the selected option
   onDropdownChange: PropTypes.func.isRequired,
 };
