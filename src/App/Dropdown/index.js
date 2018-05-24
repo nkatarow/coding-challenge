@@ -4,9 +4,10 @@ import './dropdown.css';
 
 export default class Dropdown extends PureComponent {
   state = {
-    value: '', // Track the currently selected dropdown item
-    currentTitle: this.props.defaultTitle, // Keep the title of the current selection handy
+    value: null, // Track the currently selected dropdown item
     isOpen: false, // Is the dropdown currently opened?
+    currentTitle: this.props.defaultTitle, // Keep the title of the current selection handy
+    previousTitle: this.props.defaultTitle, // Keep a copy of a the previously selected title in case we cancel the dropdown
   };
 
   componentDidMount() {
@@ -32,18 +33,22 @@ export default class Dropdown extends PureComponent {
 
   toggleDropdown = (event) => {
     event.preventDefault(); // Keep any default actions from bubbling up
+    const previousTitle = this.state.currentTitle; // Backup the previous title
 
     this.setState({
+      previousTitle, // Set previous title into state
       isOpen: !this.state.isOpen, // Whatever the current open state is, replace it with the opposite
-      currentTitle: this.props.defaultTitle, // Display our default dropdown title while opened
     });
   }
 
   handleSelection(value, content) {
+    const previousTitle = this.state.currentTitle; // Backup the previous title
+
     this.setState({
       currentTitle: content, // Set the select title into state
-      value, // Set the selected value into state
       isOpen: false, // Close the dropdown after selection
+      previousTitle, // Set previous title into state
+      value, // Set the selected value into state
     });
 
     this.props.onDropdownChange(value); // Pass currently selected value via props to the parent's method
@@ -56,22 +61,27 @@ export default class Dropdown extends PureComponent {
       <li
         key={option.id}
         value={option.value}
-        aria-selected="false"
         content={option.content}
-        role="option"
         onClick={() => this.handleSelection(option.value, option.content)}
         onKeyPress={() => this.handleSelection(option.value, option.content)}
+        aria-selected="false"
+        role="option"
       >
         {option.content}
       </li>
     ));
 
+    // Add/remove open class for styling purposes
     const cssClass = this.state.isOpen ? 'open' : '';
+    // If the dropdown is open, show the default title, otherwise show the current title
+    const currentSelectionTitle = this.state.isOpen ? this.props.defaultTitle : this.state.currentTitle;
 
     // Then return a select element, generated with our options variable from above
     return (
       <div className="dropdown" ref={this.setRef}>
-        <button onClick={this.toggleDropdown} className="current-selection">{this.state.currentTitle}</button>
+        <button onClick={this.toggleDropdown} className="current-selection">
+          { currentSelectionTitle }
+        </button>
         <ul
           className={cssClass}
           onChange={this.dropDownHandler}

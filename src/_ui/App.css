@@ -18,8 +18,17 @@ body {
   justify-content: space-around;
   padding: 20px;
 }
+  .App-logo { width: 20%; }
 
-  .App-header nav { position: relative; }
+  .App-title {
+    text-align: center;
+    width: 60%;
+  }
+
+  .App-header nav {
+    position: relative;
+    width: 20%;
+  }
 
     .App-header nav .dropdown ul {
       background-color: #fff;

@@ -33,9 +33,9 @@ export default function () {
 
         <dl>
           <dt>toggleDropdown</dt>
-          <dd>Our dropdown has a button that can handle an onclick function that calls this. This function simply prevents any default button actions from bubbling up, sets the isOpen state to the opposite of its current boolean value, and sets the currentTitle to the defaultTitle Prop for context.</dd>
+          <dd>Our dropdown has a button that can handle an onclick function that calls this. This function simply prevents any default button actions from bubbling up, gets the currently set title and sets it to state along withthe isOpen state to the opposite of its current boolean value.</dd>
           <dt>handleSelection</dt>
-          <dd>When one of our list items generated from the data object are selected, this function takes the value and title of that item and stores them in state. It also closes the dropdown by changing the isOpen state to false, and passes the selected value to the parent component with props.onDropdownChange.</dd>
+          <dd>When one of our list items generated from the data array are selected, this function takes the value and title of that item and stores them in state. It also closes the dropdown by changing the isOpen state to false, saves a copy of the previous title, and passes the selected value to the parent component with props.onDropdownChange.</dd>
           <dt>handleDocumentClick</dt>
           <dd>This is a simple function that is called whenever the document is clicked. It checks to see if the dropdown is open, if the click was on the dropdown or any of its children. If the conditions are met, it will toggle the dropdown off in order to mimic basic HTML select behavior.</dd>
           <dt>setRef</dt>

@@ -4,8 +4,11 @@
   margin: 2em auto;
   max-width: 1080px;
 }
-  .filter-component .left { width: 20%; }
-  .filter-component .right { width: 75%; }
+  .filter-component > div:first-child {
+    margin-top: 2em;
+    width: 20%;
+  }
+  .filter-component > div:last-child { width: 75%; }
 
 .filtered-list-example {
   border-bottom: 1px solid #ccc;

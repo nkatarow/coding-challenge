@@ -24,8 +24,8 @@ const formFieldData = [
 
 export default class FormComponent extends PureComponent {
   state = {
-    value: '', // Track the currently selected dropdown item
-    submittedValue: '',
+    value: null, // Track the currently selected dropdown item
+    submittedValue: null, // Track value that has been submitted
     formSubmitted: false, // Whether the form has been submitted or not
   };
 
@@ -63,11 +63,11 @@ export default class FormComponent extends PureComponent {
           <p>This component has two methods: handleDropdownChange and formSubmit. The first sets the currently selected option from the dropdown into state, which is then used to display the selected option inline. The second prevents the default form submission event, and sets the formSubmitted state to true. When this state is true, another set of text appears displaying the submitted dropdown option.</p>
 
           {/* Display the currently selected dropdown item via state */}
-          <p><strong>Current dropdown value:</strong> { this.state.value }</p>
+          <p><strong>Current dropdown value:</strong> { (this.state.value === null) ? 'null' : this.state.value }</p>
 
           {/* Conditionally display the selected dropdown item based on whether the form has been submitted or not */}
           {this.state.formSubmitted &&
-            <p><strong>Form has been submitted with dropdown value equal to:</strong> {this.state.submittedValue}</p>
+            <p><strong>Form has been submitted with dropdown value equal to:</strong> { (this.state.submittedValue === null) ? 'null' : this.state.submittedValue }</p>
           }
         </div>
       </section>
