@@ -7,7 +7,6 @@ export default class Dropdown extends PureComponent {
     value: null, // Track the currently selected dropdown item
     isOpen: false, // Is the dropdown currently opened?
     currentTitle: this.props.defaultTitle, // Keep the title of the current selection handy
-    previousTitle: this.props.defaultTitle, // Keep a copy of a the previously selected title in case we cancel the dropdown
   };
 
   componentDidMount() {
@@ -33,21 +32,16 @@ export default class Dropdown extends PureComponent {
 
   toggleDropdown = (event) => {
     event.preventDefault(); // Keep any default actions from bubbling up
-    const previousTitle = this.state.currentTitle; // Backup the previous title
 
     this.setState({
-      previousTitle, // Set previous title into state
       isOpen: !this.state.isOpen, // Whatever the current open state is, replace it with the opposite
     });
   }
 
   handleSelection(value, content) {
-    const previousTitle = this.state.currentTitle; // Backup the previous title
-
     this.setState({
       currentTitle: content, // Set the select title into state
       isOpen: false, // Close the dropdown after selection
-      previousTitle, // Set previous title into state
       value, // Set the selected value into state
     });
 
